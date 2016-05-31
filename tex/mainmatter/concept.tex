@@ -85,23 +85,25 @@ each of the variables is defined using a macro.
 Finally, here comes an example of how to reference equations \eqref{eq:1} to \eqref{eq:2}.
 
 \section{Pseudo Code}
-Algorithm \ref{alg:intexp} is an example of how pseudo code can be represented in Latex.
+Algorithm \ref{alg:euclid} is an example of how pseudo code can be represented in Latex.
 Of course there are, as with anything in Latex, many options available to achieve this goal.
-Here, the \swname{algorithmic} package is employed.
+Here, the \swname{algpseudocode} package is employed.
 \begin{algorithm}
-  \begin{algorithmic}
-    \FORALL{muscle fibres $i$}
-    \FORALL{electrodes $j$}
-    \STATE evaluate $\Bfun_{i,j}(k_z)$ at a set of points $k_{z,n}$
-    \STATE initialise $\Bfun_{i,j,\text{interp}}(k_z)$, an interpolation / extrapolation of $\Bfun_{i,j}(k_{z,n})$
-    \FORALL{temporal frequencies $k_{t,m}$ required for the inverse Fourier transform}
-    \STATE calculate $\Afun_{i,j}(k_{t,m})$, using $\Bfun_{i,j,\text{interp}}(k_z)$ instead of $\Bfun_{i,j}(k_z)$
-    \ENDFOR
-    \ENDFOR
-    \ENDFOR
-  \end{algorithmic}
-  \caption{Algorithm for the efficient numerical evaluation of $\Afun_{i,j}(k_{t,m})$.}
-  \label{alg:intexp}
+  % Example code due to
+  % http://tex.stackexchange.com/a/230789/64293
+    \caption{Euclid's algorithm}
+    \label{alg:euclid}
+    \begin{algorithmic}[1] % The number tells where the line numbering should start
+        \Procedure{Euclid}{$a,b$} \Comment{The g.c.d. of a and b}
+            \State $r\gets a \bmod b$
+            \While{$r\not=0$} \Comment{We have the answer if r is 0}
+                \State $a \gets b$
+                \State $b \gets r$
+                \State $r \gets a \bmod b$
+            \EndWhile\label{euclidendwhile}
+            \State \textbf{return} $b$\Comment{The gcd is b}
+        \EndProcedure
+    \end{algorithmic}
 \end{algorithm}
 
 

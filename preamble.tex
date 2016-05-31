@@ -8,11 +8,17 @@
 % Tables
 \usepackage{booktabs}
 
-% Make todo notes in the thesis
+% Make todo notes in the thesis.
+% Simply change the status to "final" to suppress printing of the notes and their list.
 \usepackage[status=draft]{fixme}
 
 % Useful in defining custom shortcut commands
 \usepackage{xspace}
+
+% Load english and german language hyphenation and options.
+% The language put last here is selected as the main language for the document,
+% specifying keywords such as Table of Contents / Inhaltsverzeichnis, etc.
+\usepackage[ngerman, english]{babel}
 
 
 
@@ -52,10 +58,13 @@
 \usepgfplotslibrary{units}
 
 
+
 %%%%% Referencing, Glossary, Bibliography
 
 % Allow for cross-referencing other parts of this documents
-\usepackage[hidelinks]{hyperref}
+% -- hidelinks prevents ugly red boxes around clickable items. Alternatively, these could be styled differently.
+% -- pdfusetitle adds author and title information to meta data
+\usepackage[hidelinks, pdfusetitle]{hyperref}
 
 % Easier cross-referencing, using the \cref and \Cref commands
 \usepackage{cleveref}
@@ -70,6 +79,16 @@
 % Change the separator between title and subtitle of a book from comma to colon
 \renewcommand{\subtitlepunct}{\addcolon\addspace}
 \addbibresource{references.bib}
+
+% Add lines to table of contents for list of figures, tables, etc. and for bibliography.
+% Alternatively (e.g. when not using a KOMA document class), this could be achieved by 
+% adding
+%     \addcontentsline{toc}{chapter}{List of Figures}
+% before \listoffigures, and similarly for the others.
+\KOMAoptions{
+  listof=totoc,
+  bibliography=totoc
+}
 
 
 
@@ -88,8 +107,10 @@
 \usepackage{mleftright}
 
 % Produce pseudo code sections
+% See http://tex.stackexchange.com/a/230789/64293 for a discussion of the various
+% packages available for this task.
 \usepackage{algorithm}
-\usepackage{algorithmic}
+\usepackage{algpseudocode}
 
 % Correctly display SI units
 \usepackage{siunitx}
