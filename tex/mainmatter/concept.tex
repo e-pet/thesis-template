@@ -10,9 +10,9 @@ You may here reuse the background information presented in the previous chapter.
 Note the extensive figure caption: many readers will first skim through your thesis and look at the figures, which should hence be as self-explanatory as possible.
 \begin{figure}
   \centering
-  \includegraphics[width=12cm]{excitation-contraction-coupling}
-  \caption[Measurements of the excitation-contraction coupling for exemplary fast-twitch and slow-twitch muscle fibres]{Measurements of the excitation-contraction coupling for exemplary fast-twitch (left) and slow-twitch (right) muscle fibres. Shown are the electrical (top) and mechanical (bottom) signals generated during a single fibre contraction. Note the discrepancy in time scales. (Reprinted from \cite{merletti04})}
-  \label{fig:excitation-contraction-coupling}
+  \includegraphics[width=12cm]{sfap-schematic}
+  \caption[Geometry of Single Fiber Action Potential (SFAP) measurements]{Schematic of the geometry in \acrfull{sfap} measurements of human muscle fibers. Shown are three muscle fibers at different depths in the muscle tissue, and a regular grid of $18$ recording electrodes on the skin surface.}
+  \label{fig:sfap-schematic}
 \end{figure}
 
 As opposed to \cref{fig:excitation-contraction-coupling}, which is included here as an external graphics file, \cref{fig:simple-schematic} shows a simple electrical schematic that is created completely in Latex, using the \swname{circuitikz} package.
@@ -32,7 +32,7 @@ This package is based on the powerful \swname{tikz} package which allows for dra
 This bears a number of advantages:
 \begin{itemize}
 \item The resulting figures are vector graphics, i.e., they are small (hence not resulting in a final thesis pdf size of several MBs) and generally look good.
-\item Font style and size is consistent with the rest of the document. This is a major problem when importing figures from other software, e.g., \swname{Matlab}.
+\item Font style and size is consistent with the rest of the document. This is a major problem when importing figures from other software, e.g., \swname{Matlab}. (Also compare \cref{fig:sfap-schematic}.)
 \item Each figure created this way is completely reproducible and configurable in every aspect.
 \end{itemize}
 Another package that is also based on the \swname{tikz} package is the \swname{pgfplots} package which enables the user to create plots either completely in Latex, or import data from an external program (e.g., \swname{matlab}) and generate a nice-looking plot from this data using \swname{tikz} (with the advantages mentioned above).

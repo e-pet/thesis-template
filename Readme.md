@@ -1,0 +1,1 @@
+This is a simple, plain Latex template package for the creation of Bachelor's and Master's theses. The template is tailored to the specific needs of engineering students pursuing a degree at the University of Lübeck.
