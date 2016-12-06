@@ -1,0 +1,26 @@
+  \newcommand*{\Aros}{96}
+  \newcommand*{\Bros}{-90}
+  \begin{axis}[
+    small,
+    width = \scalefactor\textwidth,
+    axis lines = left,
+    x unit = mm,
+    y unit = mV,
+    xlabel = $z$,
+    ylabel = $V$,
+    xtick={0,5,10},
+    ymin = -99,
+    ymax = 49,
+    extra y ticks = {\Bros},
+    extra y tick labels = {$B$},
+    ]
+    % Right part of the expression
+    \addplot [
+    domain=-2:15, 
+    samples=1000, 
+    color=blue,
+    ]
+    {x>0 ? \Aros*x^3*e^(-x)+\Bros : \Bros};
+
+    \draw[dashed] (-2,\Bros) -- (15,\Bros);
+  \end{axis}

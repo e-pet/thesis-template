@@ -1,0 +1,54 @@
+\newcommand*{\Aros}{96}
+\newcommand*{\Bros}{-90}
+\pgfplotsset{set layers}
+\begin{axis}[
+  small,
+  width = \scalefactor\textwidth,
+  axis y line = left,
+  axis x line* = bottom,
+  x unit = mm,
+  y unit = mV/mm,
+  xlabel = $z$,
+  ylabel = $\psi$,
+  xmin = -15,
+  xmax = 2,
+  ymin = -79,
+  ymax = 39,
+  xtick = {-10, -5, 0},
+  ]
+
+  \addplot [
+  domain=-15:2, 
+  samples=1000, 
+  color=blue,
+  ]
+  {x>=0 ? 0 : -3*\Aros*x^2*e^x-\Aros*e^x*x^3}
+  node[pos = 0.03,
+       pin = 70 : {$\psi$}] {};
+
+\end{axis}
+
+\begin{axis}[
+  small,
+  width = \scalefactor\textwidth,
+  axis y line = right,
+  axis x line = none,
+  x unit = mm,
+  y unit = mV/mm^2,
+  xlabel = $z$,
+  ylabel = $\psi'$,
+  xmin = -15,
+  xmax = 2,
+  ymin = -59,
+  ymax = 119,
+  ]
+
+  \addplot [
+  domain=-15:2, 
+  samples=1000, 
+  color=purple,
+  ]
+  {x<0 ? -(6*x+6*x^2+x^3)*\Aros*e^x : 0}
+  node[pos = 0.02,
+       pin = 70 : {$\psi'$}] {};
+\end{axis}                      
