@@ -5,106 +5,113 @@ This chapter describes the novelty that you have created during the making of yo
 This novelty might be an experimental apparatus, a novel algorithm, or a thorough analysis of something.
 You may here reuse the background information presented in the previous chapter.
 
-\section{Figures in Latex}
-\Cref{fig:sfap-schematic} shows a schematic of the geometry of of \gls{sfap} detection.
-Note the extensive figure caption: many readers will first skim through your thesis and look at the figures, which should hence be as self-explanatory as possible.
-\begin{figure}
-  \centering
-  \includegraphics[width=12cm]{sfap-schematic}
-  \caption[Geometry of Single Fiber Action Potential (SFAP) measurements]{Schematic of the geometry in \acrfull{sfap} measurements of human muscle fibers. Shown are three muscle fibers at different depths in the muscle tissue, and a regular grid of $18$ recording electrodes on the skin surface.}
-  \label{fig:sfap-schematic}
-\end{figure}
+There is a wealth of guides available on thesis writing; one that I'd like to point out here because of its conciseness and direct availability is \emph{Clarity in technical reporting}~\cite{Katzoff64}, an old yet still valid guide on the subject, originally created for internal use at NASA.
 
-As opposed to \cref{fig:sfap-schematic}, which is included here as an external graphics file, \cref{fig:simple-schematic} shows a simple electrical schematic that is created completely in Latex, using the \swname{circuitikz} package.
-\begin{figure}
-  \centering
-  \begin{circuitikz} \draw
-    (0,0) to [V=$U_0$] (0,3)
-    to [R=$R_I$, i=$I_R$] (3,3)
-    to [R=$R_L$] (3,0)
-    to [C=$C_P$] (0,0)
-    ;
-  \end{circuitikz}
-  \caption{A simple electrical circuit, drawn in Latex using the \swname{circuitikz} package.}
-  \label{fig:simple-schematic}
-\end{figure}
-This package is based on the powerful \swname{tikz} package which allows for drawing any kind of figure directly in Latex.
-This bears a number of advantages:
+\section{Thesis writing strategies}
+
+\subsection{Have a plan before you start}
+Before starting to write any paragraph of full text in your thesis, you should know the contents of every chapter of your thesis to a high degree of detail.
+Otherwise, you will find yourself rewriting and maybe even dumping large parts of what you wrote earlier.
+Create a detailed outline of the story you want to tell in your thesis, and make it clear to yourself how each chapter contributes to this central story (also see below for general tips on structuring your thesis well).
+It also helps to collect and create explanatory figures early on that can help you identify the concepts you need to explain in your thesis.
+
+Once you have a very detailed draft of your thesis \emph{withoug having written any full sentences}, and you have discussed this draft in detail with your supervisor, doing the actual writing will be much, much easier than if you started right away.
+It will also reduce the chance of your supervisor telling you to rewrite large parts of your thesis.
+For a more detailed discussion of this writing strategy, also refer to \textcite{Carlis09}.
+
+\subsection{Reproducible research}
+\emph{Reproducible research} is a term that has gained a lot of attention recently.
+It describes research that is easily reproducible by yourself, as well as others.
+Note that many common research practices are not easily reproducible at all, e.g.
 \begin{itemize}
-\item The resulting figures are vector graphics, i.e., they are small (hence not resulting in a final thesis pdf size of several MBs) and generally look good.
-\item Font style and size is consistent with the rest of the document. This is a major problem when importing figures from other software, e.g., \swname{Matlab}. (Also compare \cref{fig:sfap-schematic}.)
-\item Each figure created this way is completely reproducible and configurable in every aspect.
+\item Saving figures you somehow created interactively in \swname{Matlab} -- instead of saving a script file that reliably reproduces this figure.
+\item Saving statistics calculated from measured data, or modified data (e.g. smoothed signals, or with outliers removed) -- instead of saving a script file that performs the desired operations.
+\item Changing a results table in your report according to new results obtained during interactive analysis -- instead of saving a script file that automatically generates the data in the table, using the most current version of your software.
 \end{itemize}
-Another package that is also based on the \swname{tikz} package is the \swname{pgfplots} package which enables the user to create plots either completely in Latex, or import data from an external program (e.g., \swname{matlab}) and generate a nice-looking plot from this data using \swname{tikz} (with the advantages mentioned above).
-\Cref{fig:rosenfalck} shows an example of two plots generated using the \swname{pgfplots} package.
-\begin{figure}
-  \centering
-  \newcommand*{\scalefactor}{0.8}
-  \begin{subfigure}[t]{.5\textwidth}
-    \centering
-    \begin{tikzpicture}
-      \input{figures/tikz/rosenfalck-1.tikz}
-    \end{tikzpicture}
-    \caption{$V_m(z)$}
-    \label{fig:rosenfalck-1}
-  \end{subfigure}%
-  \begin{subfigure}[t]{.5\textwidth}
-    \centering
-    \begin{tikzpicture}
-      \input{figures/tikz/rosenfalck-2.tikz}
-    \end{tikzpicture}
-    \caption{$\psi(z)=\dd{z} V_m(-z)$ and $\psi'(z)$}
-    \label{fig:rosenfalck-2}
-  \end{subfigure}%
-  \caption[Plots of Rosenfalck's model function for the \acrlong{iap}]{Plots of the \acrfull{iap} model function proposed by \textcite{rosenfalck69}.}
-  \label{fig:rosenfalck}
-\end{figure}
+Keeping your work reproducible is not only useful for others, but also (and especially) for yourself: It makes sure that all parts of your work (data, analysis, report, etc.) are always in sync.
+Furthermore, you can, e.g., easily update all figures in your thesis a week before the deadline -- which may be a nightmare if you created all of these figures manually and cannote reproduce them easily.
+A good introduction to the steps required to keep your work reproducible can be found at \url{http://kbroman.org/steps2rr/}.
 
-\section{Blind Source Separation Methods}
-In this chapter in particular, you should provide a lot of references, e.g., to scientific articles~\cite{farina99}, books~\cite{plonsey07}, book chapters~\cite{rodriguez-falces12}, PhD theses~\cite{fevotte03}, or software projects~\cite{r-project} that you used during the creation of your thesis.
-Sometimes, you should explicitly name authors, such as \textcite{farina99}, who wrote a seminal article on the mathematical modelling of \gls{emg} measurements.
+\section{Structure}
+The general structure of your text depends on the particular subject and your personal preferences.
+A reader following your text should at each point in your thesis feel like you are telling him a consistent story.
+In particular, ask yourself the following questions:
+\begin{itemize}
+\item What is your major contribution to the scientific community? 
+\item Which concepts and what background knowledge do you need to provide for the reader to be able to understand both your contribution and its relevance?
+\item Which would be a sensible and natural ordering of the concepts that you need to explain?
+\end{itemize}
+Always keep in mind that the structure of your text should feel natural to a reader, not leaving him or her wondering what on earth this new topic has to do with anything he's read so far.
 
-Note how the \gls{emg} acronym is clickable and leads to the definition of this acronym in the glossary.
-This is one of the many features of the \swname{glossaries} package.
+Start your scientific text with an introduction, that
+\begin{itemize}
+    \item introduces the subject,
+    \item specifies the topic,
+    \item reflects on the problem that you are going to consider,
+    \item defines the purpose of the work,
+    \item explains the line of reasoning
+    \item sketches the structure of the work.
+\end{itemize}
 
-\subsection{Equations}
-If you are going to write more than a few equations in your thesis, it is highly recommendable to use macros to define each variable that occurs.
-This way, if you decide to rename the velocity from $v$ to $v_0$ everywhere in your thesis later on during the process of writing, you will only have to change the definition of the macro used for this variable.
-For example, in
-\begin{equation}
-  \label{eq:1}
-  \vel = \frac{\diff \loc}{\diff t}
-\end{equation}
-and
-\begin{align}
-  \label{eq:2}
-  \acc &= \frac{\diff \vel}{\diff t} \nonumber \\
-  &= \frac{\force}{\mass}
-\end{align}
-each of the variables is defined using a macro.
-Finally, here comes an example of how to reference equations \eqref{eq:1} to \eqref{eq:2}.
+Keep in mind that there are some readers that only read the introduction and conclusion of your work and base their decision on whether the work bears any interest for them only on these parts. 
+To make that decision, they need to get all relevant information from those two chapters. 
+Hint: Look at other work with a focus on that question.
 
-\section{Pseudo Code}
-Algorithm \ref{alg:euclid} is an example of how pseudo code can be represented in Latex.
-Of course there are, as with anything in Latex, many options available to achieve this goal.
-Here, the \swname{algpseudocode} package is employed.
-\begin{algorithm}
-  % Example code due to
-  % http://tex.stackexchange.com/a/230789/64293
-    \caption{Euclid's algorithm}
-    \label{alg:euclid}
-    \begin{algorithmic}[1] % The number tells where the line numbering should start
-        \Procedure{Euclid}{$a,b$} \Comment{The g.c.d. of a and b}
-            \State $r\gets a \bmod b$
-            \While{$r\not=0$} \Comment{We have the answer if r is 0}
-                \State $a \gets b$
-                \State $b \gets r$
-                \State $r \gets a \bmod b$
-            \EndWhile\label{euclidendwhile}
-            \State \textbf{return} $b$\Comment{The gcd is b}
-        \EndProcedure
-    \end{algorithmic}
-\end{algorithm}
+For the main part of your work, there are no general rules. 
+Among others, the order of your chapters should depend on whether your work has a rather theoretic, methodical or experimental focus. 
+The length of each chapter does not necessarily need to be proportional to the amount of time you have spent on solving the respective problems. 
+Sometimes it takes one week to debug a piece of code, which nevertheless should not be explained excessively.
+
+Your work concludes with a summary of your results.
+Have a look at your introduction: how you have specified the problem there? Do your results solve the problem?
+Do not present any further results here that have been not presented in the main part. 
+As such, always clearly separate the presentation and the discussion of results.
+
+Finally, you end with an outlook that points out open questions. 
+What should be further analyzed and what are possible follow-up projects?
+Do not be afraid to point out questions that came to your mind during your research, but you did not have time to properly answer. 
+A good thesis may raise more questions than it clarifies.
+
+
+\section{Language}
+For a very good and readable (and cheap) guide on improving your technical writing skills, refer to \textcite{Zinsser76}: \emph{On Writing Well}.
+Every minute you spend reading this book will be well worth its time.
+
+\subsection{Correctness}
+Technical/scientific writing serves a single purpose: to transport information as efficiently as possible.
+To achieve this, your writing should be as accurate as possible. 
+Do not use colloquial language.
+Respect the rules of grammar, spelling and punctuation; phrases or words used in the wrong context can lead to misunderstandings or may be hard to understand.
+It should be clear that the results of your work, e.g., experiments, must be documented precisely and correctly, even though they might have had unexpected outcomes.
+Otherwise you do not only cause harm to you but any further research.
+
+
+\subsection{Comprehensibility}
+Correctness does not imply comprehensibility.
+Look at your text from the readers point of view: Consider his or her position, previous knowledge and attitude. Formulate as precisely as possible but not more complicated than necessary. 
+Therefore, 
+\begin{itemize}
+    \item choose words, that are known;
+    \item use words that are probably unknown, such that their meaning can be deduced from the context, or explain or define them;
+    \item do not construct deeply nested sentences.
+\end{itemize}
+
+\section{Preparing a scientific presentation}
+Generally, the same guiding principles that apply to writing a scientific report also apply to the preparation of a scientific presentation: A meaningful structure, clarity, conciseness and correct presentation of contents, including correct referencing of previous works of other scientists.
+However, in a presentation, the focus should be strongly shifted away from using a lot of text, towards the display of informative figures and diagrams that visually support your oral presentation of concepts and results.
+
+A recent trend in scientific presentation styles has been to move away from the classical \glqq Introduction - Methods - Results - Conclusion\grqq{} structure of presentations, and more towards what is called an \glqq Assertion - Evidence\grqq{} structure.
+In this style, slides are usually composed of a title line that displays a meaningful message you would like to convey to your audience (\glqq Respiratory Mechanics can be modeled as Electrical Circuits\grqq{}), instead of a classical caption (\glqq Modelling of Respiratory Mechanics\grqq{}), and supporting visual evidence (i.e., a mechanical and an electrical model of respiratory mechanics), instead of bullet point lists.
+All further information required to understand the slide is  presented orally by the speaker.
+Scientific studies have shown this style of slides to be more effective in conveying information to the audience than classically designed slides.
+For more information on this presentation style (and pointers towards the mentioned studies), refer to \url{http://www.assertion-evidence.com/}.
+
+The following is just a further quick link list compiled to help in creating good scientific presentations.
+\begin{itemize}
+\item \url{http://www.the-scientist.com/?articles.view/articleNo/28818/title/Pimp-your-PowerPoint/}
+\item \url{http://www.northwestern.edu/climb/resources/oral-communication-skills/creating-a-presentation.html}
+\item \url{http://www.nextscientist.com/improve-presentation-skills-of-phd-students/}
+\end{itemize}
 
 
 %%%%% Emacs-related stuff

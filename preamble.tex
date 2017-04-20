@@ -19,7 +19,7 @@
 % The language put last here is selected as the main language for the document,
 % specifying keywords such as Table of Contents / Inhaltsverzeichnis, etc.
 \usepackage[ngerman, english]{babel}
-
+\usepackage{csquotes}
 
 
 %%%%% Style
@@ -75,9 +75,12 @@
 \makenoidxglossaries
 
 % Bibliography
-\usepackage[backend=bibtex,style=ieee,sorting=nyt]{biblatex}
+\usepackage[backend=biber, style=ieee, sorting=nyt]{biblatex}
 % Change the separator between title and subtitle of a book from comma to colon
 \renewcommand{\subtitlepunct}{\addcolon\addspace}
+% Make the space between author names and actual reference in the \textcite
+% command non-breakable.
+\renewcommand\namelabeldelim{\addnbspace}
 \addbibresource{references.bib}
 
 % Add lines to table of contents for list of figures, tables, etc. and for bibliography.
