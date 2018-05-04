@@ -2,6 +2,7 @@
 \label{chap:materials-and-methods}
 
 This chapter deals with background information relevant for your thesis, including physiological background, existing research on the topic, and mathematical and other preliminaries required to understand the novel concepts presented in the following chapter.
+It is also often called \emph{Fundamentals} or \emph{Background}.
 
 \section{\LaTeX's Features}
 
@@ -44,17 +45,23 @@ What follows is a small list compiled based on my personal preferences.
 
 
 \section{Figures in Latex}
+Figures should represent an essential component of your thesis, as they are excellent tools for effectively communicating information on complex issues to your reader.
+While it is not easy to create visually appealing figures that represent information in the most accessible way, this is a skill that can be learned over time by reading various tutorials on the topic, carefully examining the works of other authors, and always reviewing one's own figures critically in this regard.
+For some pointers on how to create good scientific figures, refer to, e.g., \textcite{Tufte1990, Ware2008, Few2012, Rougier2014}.
+A very quick and short introduction to clean and clear figure design is provided in, e.g., \url{https://youtu.be/UuL6wPGTJZQ}.
+In the following, the rather technical aspect of how to generate and include figures in Latex will be considered, and several options will be discussed.
+
 \Cref{fig:sfap-schematic} shows a schematic of the geometry of of \gls{sfap} detection.
 Note the extensive figure caption: many readers will first skim through your thesis and look at the figures, which should hence be as self-explanatory as possible.
 \begin{figure}
   \centering
   \includegraphics[width=12cm]{sfap-schematic}
-  \caption[Geometry of Single Fiber Action Potential (SFAP) measurements]{Schematic of the geometry in \acrfull{sfap} measurements of human muscle fibers. Shown are three muscle fibers at different depths in the muscle tissue, and a regular grid of $18$ recording electrodes on the skin surface.}
+  \caption[Geometry of Single Fiber Action Potential (SFAP) measurements]{Schematic of the geometry in \acrfull{sfap} measurements of human muscle fibers. Shown are three muscle fibers at different depths in the muscle tissue, and a regular grid of $18$ recording electrodes on the skin surface. This figure has been produced using the \texttt{Inkscape} software.}
   \label{fig:sfap-schematic}
 \end{figure}
 
 As opposed to \cref{fig:sfap-schematic}, which is included here as an external graphics file, \cref{fig:simple-schematic} shows a simple electrical schematic that is created completely in Latex, using the \swname{circuitikz} package.
-\begin{figure}
+\begin{figure}[htbp]
   \centering
   \begin{circuitikz} \draw
     (0,0) to [V=$U_0$] (0,3)
@@ -63,7 +70,7 @@ As opposed to \cref{fig:sfap-schematic}, which is included here as an external g
     to [C=$C_P$] (0,0)
     ;
   \end{circuitikz}
-  \caption{A simple electrical circuit, drawn in Latex using the \swname{circuitikz} package.}
+  \caption{A simple electrical circuit, drawn in Latex using the \swname{circuitikz} package. Note how the font type and size are exactly the same as in the normal text body.}
   \label{fig:simple-schematic}
 \end{figure}
 This package is based on the powerful \swname{tikz} package which allows for drawing any kind of figure directly in Latex.
@@ -73,38 +80,101 @@ This bears a number of advantages:
 \item Font style and size is consistent with the rest of the document. This is a major problem when importing figures from other software, e.g., \swname{Matlab}. (Also compare \cref{fig:sfap-schematic}.)
 \item Each figure created this way is completely reproducible and configurable in every aspect.
 \end{itemize}
-Another package that is also based on the \swname{tikz} package is the \swname{pgfplots} package which enables the user to create plots either completely in Latex, or import data from an external program (e.g., \swname{matlab}) and generate a nice-looking plot from this data using \swname{tikz} (with the advantages mentioned above).
-\Cref{fig:rosenfalck} shows an example of two plots generated using the \swname{pgfplots} package.
-\begin{figure}
-  \centering
-  \newcommand*{\scalefactor}{0.8}
-  \begin{subfigure}[t]{.5\textwidth}
+
+Another package that is also based on the \swname{tikz} package is the \pgfplots{} package which enables the user to create plots either completely in Latex, or import data\footnote{For importing data in pgfplots, these are best exported to a \texttt{csv} file, e.g. using \texttt{csvwrite} in \matlab{} or \texttt{numpy.savetxt} or \texttt{pandas.DataFrame.to\_csv} in \python{}.} from an external program (e.g., \matlab{} or \python{}) and generate a nice-looking plot from this data using \swname{tikz} (with the advantages mentioned above).
+\Cref{fig:matlab} shows an exemplary comparison of a plot exported directly from \matlab{} and the same data points exported to a data file and plotted using \pgfplots{}.
+(It also shows how to create multiple subfigures inside a single figure.)
+\begin{figure}[htbp]
+	\centering
+	% subfigure parameters are alignment (t=top) and subfigure width
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		% figure width is set to the same width as during plot export in Matlab
+		% to ensure correct font scaling
+		\includegraphics[width=2.5in]{figures/generated/ex2.eps}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\textwidth}
+		\begin{tikzpicture}
+			\pgfplotstableread[col sep=comma]{data/generated/data_analytical.csv}\dataana
+		
+			\begin{axis}[
+	          axis x line=center,
+	          axis y line=left,
+	          xlabel=$U_{\text{in}} \, (\si{V})$,
+	          ylabel=$U_{\text{out}} \, (\si{V})$,
+	          xmin=0,
+	          xmax=6.5,
+	          ymin=-3,
+	          ymax=7,
+	          grid=major,
+	          width=2.5in,
+			]          
+	          \addplot+ [no markers, style=solid, line width=1.5pt]
+	          table {\dataana};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\caption{The same data points, (a) plotted using \matlab{} and exported to an \texttt{.eps} figure file, and (b) exported to a \texttt{.csv} file from \matlab{} and plotted using \pgfplots{}.
+	Note how the font type and size of all labels in figure (b) agree nicely with those in the rest of the document.}
+	\label{fig:matlab}
+\end{figure}
+\Cref{fig:rosenfalck} shows an example of a plot that is generated completely in \pgfplots{}, without any aid from an external program.
+\begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}
-      \input{figures/tikz/rosenfalck-1.tikz}
-    \end{tikzpicture}
-    \caption{$V_m(z)$}
-    \label{fig:rosenfalck-1}
-  \end{subfigure}%
-  \begin{subfigure}[t]{.5\textwidth}
-    \centering
+    \newcommand*{\scalefactor}{0.5}
     \begin{tikzpicture}
       \input{figures/tikz/rosenfalck-2.tikz}
     \end{tikzpicture}
-    \caption{$\psi(z)=\dd{z} V_m(-z)$ and $\psi'(z)$}
-    \label{fig:rosenfalck-2}
-  \end{subfigure}%
-  \caption[Plots of Rosenfalck's model function for the \acrlong{iap}]{Plots of the \acrfull{iap} model function proposed by \textcite{rosenfalck69}.}
+  \caption[Plots of Rosenfalck's model function for the \acrlong{iap}]{Plots of the \acrfull{iap} model function proposed by \textcite{rosenfalck69}, generated using the \pgfplots{} package.
+  Figure reproduced from \textcite{Petersen2015}.}
   \label{fig:rosenfalck}
 \end{figure}
 
-\section{Referencing}
-In this chapter in particular (materials and methods), you should provide a lot of references, e.g., to scientific articles~\cite{farina99}, books~\cite{plonsey07}, book chapters~\cite{rodriguez-falces12}, PhD theses~\cite{fevotte03}, or software projects~\cite{r-project} that you used during the creation of your thesis.
-Sometimes, you should explicitly name authors, such as \textcite{farina99}, who wrote a seminal article on the mathematical modelling of \gls{emg} measurements.
-A bibliography can be created automatically (see the appendix for an example).
+The \pgfplots{} package has one drawback, which is at the same time its greatest advantage: it generates \emph{vector graphics}.
+Vector graphics have a number of significant advantages over raster graphics formats like \texttt{jpeg} and \texttt{png}.
+However, when there is \emph{a lot} of data points in a figure, and hence a huge amount of vectors is required to accurately represent the figure, vector graphics tend to become very large and very inefficient to generate and view.
+For such figures, raster graphics are usually preferrable -- however, one would still like to achieve things like consistent font size and type between the figure and the surrounding document.
+One way to achieve this is by using the \gnuplot{} software package.
+\gnuplot{} essentially provides a simple scripting language that can be used interactively or script-based to generate, view, and export figures from scratch or using existing data.
+\Cref{fig:gnuplot-emg} shows a rather sophisticated figure containing EMG signals that has been generated using \gnuplot{}.
+For more information, refer to the accompanying script file \texttt{scripts/emg-raw-plots.gp} that generated this figure, and to the \gnuplot{} homepage and various tutorials available on the web.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics{figures/generated/emg-signals}
+	\caption{Exemplary subset of the measurements taken from subject 7, raw (plotted with a scaling factor of $\frac{1}{10}$) and processed by the various ECG removal algorithms described in the text. All signals are zero-mean, with offsets added for illustrational purposes only.
+	Due to the huge amount of data points, representing this figure in a vector graphics format (using, e.g., \pgfplots) would be very inefficient. 
+	Here, the figure has been produced using the \gnuplot{} software in a raster graphics format, while still achieving nice and consistent visual formatting.}
+	\label{fig:gnuplot-emg}
+\end{figure}
 
-Note how the \gls{emg} acronym is clickable and leads to the definition of this acronym in the glossary.
-This is one of the many features of the \swname{glossaries} package.
+\section{Referencing}
+Every statement that you make in your thesis should either be supported by evidence (theoretical or empirical) provided in your thesis, or by citation of an appropriate literature reference.
+In the present chapter (materials and methods) in particular, you should provide a lot of references, e.g., to scientific articles~\cite{farina99}, books~\cite{plonsey07}, book chapters~\cite{rodriguez-falces12}, PhD theses~\cite{fevotte03}, or software projects~\cite{r-project} that you used during the creation of your thesis.
+You must provide a reference whenever you make a statement that is not a result of your own (experimental or theoretical) work, but rather taken from a literary source.
+When selecting sources to cite, preference should be given to high-quality sources published in respected scientific journals (or books), wherever possible.
+Moreover, one should always try to cite the original source where a subject was discussed first or an algorithm was proposed first, instead of secondary sources.
+For example, regarding the infamous Kalman filter, one should always cite the original paper published by \textcite{Kalman1960} instead of the many papers published later on (variations of) the same subject.
+
+Sometimes, you should explicitly name authors, such as \textcite{farina99}, who wrote a seminal article on the mathematical modelling of \gls{emg} measurements (see the Latex source document to see how this textual reference is created automatically)\footnote{Note how the \gls{emg} acronym is clickable and leads to the definition of this acronym in the glossary.
+This is one of the many features of the \swname{glossaries} package.}.
+In some cases -- especially when describing the fundamentals of your research -- you will have entire paragraphs that are based on a single, significant reference on the subject you describe.
+In this case, it is neither necessary nor useful to cite said reference after each phrase.
+One acceptable solution is to have a phrase in the beginning of the paragraph or section that acknowledges the source and states clearly that the entire following paragraph is based on this source.
+
+Figures may be reproduced from sources, in which case the source must of course be acknowledged accordingly -- refer to \cref{fig:rosenfalck} for an example of how this can be done.
+It is also considered good scientific practice to provide citations for the software packages that you have used, considering that these are often the result of many years of scientific work~\cite{r-project, Wickham2009}.
+Many software packages provide information on how to cite them on their project web pages.
+
+Finally, a bibliography can be created automatically, based on the order in which you have cited sources (see the appendix for an example).
+This can be achieved using various tools and packages, which all require a separate file (often called \texttt{references.bib}) containing bibliographic information on the cited sources.
+In this template, the \texttt{biblatex} package in combination with the \texttt{biber} software is used.
+Usage is simple: After compiling your document once with \texttt{pdflatex}, a file \texttt{main.bcf} is generated, which essentially contains a list of the cited sources.
+Next, running \texttt{biber main} on the command line combines this generated list with the \texttt{.bib} file and generates a new file \texttt{main.bcf} that contains the required bibliographic information, using the correct order and citation style.
+Afterwards, run \texttt{pdflatex} again, to incorporate this bibliographic information in the generated document.
+This process has to be repeated every time a new source is cited in the main document, and each time bibliographic information in the \texttt{bib} file is added or changed.
+Note that there are various software packages available that enable easy handling of bibliographic data and automatic generation of a corresponding \texttt{bib} file, e.g. the open source package \texttt{JabRef}.
 
 \subsection{This is a subsection}
 See the source code for how this is achieved.

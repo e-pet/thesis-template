@@ -22,6 +22,8 @@
 \usepackage{csquotes}
 
 
+
+
 %%%%% Style
 
 % Font type
@@ -32,6 +34,7 @@
 %\singlespacing
 \onehalfspacing
 %\doublespacing
+
 
 
 
@@ -56,6 +59,33 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.11}
 \usepgfplotslibrary{units}
+
+
+
+
+%%%%% Maths and computer science packages
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+% introduce new type of theorems (uses amsthm package)
+\newtheorem{lemma}{Lemma}
+
+% Improvement of \left and \right due to 
+% http://tex.stackexchange.com/questions/2607/spacing-around-left-and-right
+\usepackage{mleftright}
+
+% Produce pseudo code sections
+% See http://tex.stackexchange.com/a/230789/64293 for a discussion of the various
+% packages available for this task.
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% Correctly display SI units
+\usepackage{siunitx}
+
 
 
 
@@ -93,30 +123,6 @@
   bibliography=totoc
 }
 
-
-
-%%%%% Maths and computer science packages
-
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amsfonts}
-\usepackage{mathtools}
-
-% introduce new type of theorems (uses amsthm package)
-\newtheorem{lemma}{Lemma}
-
-% Improvement of \left and \right due to 
-% http://tex.stackexchange.com/questions/2607/spacing-around-left-and-right
-\usepackage{mleftright}
-
-% Produce pseudo code sections
-% See http://tex.stackexchange.com/a/230789/64293 for a discussion of the various
-% packages available for this task.
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-
-% Correctly display SI units
-\usepackage{siunitx}
 
 
 
