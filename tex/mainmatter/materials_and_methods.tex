@@ -4,23 +4,38 @@
 This chapter deals with background information relevant for your thesis, including physiological background, existing research on the topic, and mathematical and other preliminaries required to understand the novel concepts presented in the following chapter.
 It is also often called \emph{Fundamentals} or \emph{Background}.
 
-\section{\LaTeX's Features}
+\section{Writing the background chapter}
+As stated above, this chapter should contain the relevant background information that is required to follow the developments and discussions in the following (main) chapters.
+Once you're beginning to write your thesis, you have probably learned a lot about your subject, and hence it will feel good to write down all that newly-gained knowledge in the background chapter.
+It is therefore important to stress that you should \emph{not} use this chapter to write down all the background knowledge you have about the subject of your thesis.
+This is \emph{not} intended to be a comprehensive textbook-style chapter that explains everything there is to know about the topic of the thesis.
+Instead, really try to focus on \emph{just} the information which is necessary to understand the following chapters.
+As a rule of thumb, the background chapter should generally not exceed 15 pages.
 
-This section gives some useful hints to write a thesis with \LaTeX. 
+As an important corollary, it follows that \emph{writing the background chapter first is a bad idea}, because if you have not yet written the other chapters, how can you know which information you need to provide in the background chapter?
+You should -- at the very least -- know the detailed structure for your \emph{whole} thesis precisely before beginning to write the background chapter.
+Otherwise, you will probably find yourself rewriting or even removing large parts of this chapter later on.
+For more details on the structure of the thesis writing process, refer to \cref{chap:concept}.
+
+\section{\LaTeX's features}
+
+This section provides a very brief introduction to writing a thesis with \LaTeX. 
 It is important to know that \LaTeX\ is not a WYSIWYG (what you see is what you get) program like other text editors, such as Microsoft Word.
 Instead, it much more resembles a programming language, in which you construct your text by proper usage of syntax.
 The ``source code'' is your \LaTeX\ file (\texttt{.tex}). 
 
-As in other programming languages, it is possible to insert comments in \LaTeX\ that are not visible in the final text. 
-Line wraps are not of importance while writing the text, since they are created during compilation.
-Therefore, formatting with \LaTeX\ is not a big deal and should not take a lot of time, if all the logical relations are correct.
+As in other programming languages, it is possible to insert comments in \LaTeX\ that are not visible in the final text, using the \% sign (refer to the source code for this paragraph in \texttt{materials\_and\_methods.tex} to see an example).
+% This is not visible in the generated pdf, for example.
+Line breaks are not of importance while writing the text, since they are created automatically during compilation.
+Paragraph breaks are inserted automatically wherever there is a blank line in the source file.
+The general formatting of the whole document can be customized precisely, but for the beginning, the default formatting provided in this template should be sufficient.
 
-One of the big advantages of \LaTeX\ is its strong support for typesetting mathematical formulas. 
-Using the logical referencing of your formulas, those references are always correct, even if you change the position of the formulas. 
-Furthermore the print quality you achieve with \LaTeX\ formulas is hardly matched by any other program, let alone free of charge!
-Citing other works and providing a nicely compiled list of references is very easy in \LaTeX, as well.
+One of the big advantages of \LaTeX\ is its strong support for typesetting mathematical formulae, see \cref{sec:equations}.
+The print quality achieved with \LaTeX\ formulae is hardly matched by any other program, let alone free of charge.
+Also, references to your equations using the correct equation numbers can easily be used and maintained even while you change your document, insert new formulae that change the numbers of all equations, and so on.
+Citing other works and providing a nicely compiled list of references is very easy in \LaTeX as well, see \cref{sec:citation}.
 
-The following text is not very meaningful on its own, but if you read the source code at the same time, it is easy to understand how different elements are constructed. 
+The following sections are not very useful if you just look at them in their compiled (pdf) form, but if you read the source code at the same time, it is easy to understand how different elements are constructed. 
 You should try to compile the file yourself and compare the results. 
 If there are any differences, check if your \LaTeX\ configuration is correct.
 
@@ -29,9 +44,9 @@ If there are any differences, check if your \LaTeX\ configuration is correct.
 
 To get started with Latex, you need...
 \begin{enumerate}
-\item a tool that generates a PDF file out of a bunch of *.tex and *.bib files.
-In Windows, this is typically \swname{MikTex} (\url{http://miktex.org/download}).
-\item a text editor. This can be as simple as \swname{Notepad++} (\url{https://notepad-plus-plus.org/}), but many would recommend an IDE that provides further convenience features. \swname{TexMaker} (\url{http://www.heise.de/download/texmaker.html}) and \swname{TexStudio} (\url{http://www.texstudio.org/}) are two well-known examples.
+\item A tool that generates a PDF file out of a bunch of *.tex and *.bib files.
+On Windows, this is typically \swname{MikTex} (\url{http://miktex.org/download}).
+\item A text editor. This can be as simple as \swname{Notepad++} (\url{https://notepad-plus-plus.org/}), but many would recommend an IDE that provides further convenience features. \swname{TexMaker} (\url{http://www.heise.de/download/texmaker.html}) and \swname{TexStudio} (\url{http://www.texstudio.org/}) are two well-known examples.
 \end{enumerate}
 If you have these two installed on your PC, you're ready to go!
 There is a wealth of references and tutorials on the internet that deal with Latex.
@@ -39,18 +54,38 @@ What follows is a small list compiled based on my personal preferences.
 \begin{itemize}
 \item ShareLatex currently provides - to my taste - the best introduction and reference on a number of Latex-related topics: \url{https://www.sharelatex.com/learn}.
 \item Latex-Wikibooks often prove useful if you're really looking for a reference of the available symbols, e.g. \url{https://en.wikibooks.org/wiki/LaTeX/Mathematics} or \url{https://en.wikibooks.org/wiki/LaTeX/Tables}.
-\item There is a neat little online tool available, which provides users with hints on available Latex commands based on the user's drawing of the desired symbol: \url{http://detexify.kirelabs.org/classify.html}.
+\item There is a neat little online tool available which provides users with hints on available Latex commands based on the user's drawing of the desired symbol: \url{http://detexify.kirelabs.org/classify.html}.
 \item Malte Schmitz from the Universität Lübeck also provides good introductory material in German: \url{http://www.mlte.de/layout}.
 \end{itemize}
 
 
 \section{Figures in Latex}
 Figures should represent an essential component of your thesis, as they are excellent tools for effectively communicating information on complex issues to your reader.
+
+\subsection{Creating good scientific figures}
 While it is not easy to create visually appealing figures that represent information in the most accessible way, this is a skill that can be learned over time by reading various tutorials on the topic, carefully examining the works of other authors, and always reviewing one's own figures critically in this regard.
-For some pointers on how to create good scientific figures, refer to, e.g., \textcite{Tufte1990, Ware2008, Few2012, Rougier2014}.
-A very quick and short introduction to clean and clear figure design is provided in, e.g., \url{https://youtu.be/UuL6wPGTJZQ}.
+A good figure should be both functional by effectively conveying the relevant information, and visually appealing to the reader.
+In \emph{very} few cases, a standard figure generated using, e.g., Matlab or python should be included directly in a scientific document without further modification and \glqq tuning\grqq.
+
+To achieve functionality, the creator of a figure should think hard about the information which the figure should convey to the reader, and the best way to depict this visually. 
+No unnecessary details should be present in the figure, because they will distract the reader from the main content -- grid lines, for example, are not really necessary in many plots and represent a distraction.
+Every element of the figure that is not completely self-explanatory should be labeled.
+The colors of elements should be selected in a meaningful way, i.e., very different elements should have clearly differing colors (blue and red, for example), while similar elements should have colors indicating that they belong together.
+For example, if two different versions of an algorithm are compared to a third, very different algorithm, one might choose two similar (but still clearly distinguishable) colors for the first two, and a very different color for the third one.
+See \url{www.colorbrewer2.org} for a list of color maps for many different use cases.
+(There are packages available for many different programming languages, including python and Matlab, which implement the colorbrewer2 color maps.)
+
+To make the figure visually appealing, care should be taken to make the figure neither too large (wasting space and making the figure look disproportionate in relation to its surroundings) nor too small (obscuring important details), and to pick a  color map that looks pleasing.
+Screen shots and bitmap graphic files should generally be avoided, because they often look bad when scaled, have the wrong dimensions, etc.
+Text size in figures should be a little bit smaller than normal text size, but still easily readable.
+Finally, it is very important to ensure consistent formatting between figures in the thesis: ideally, they should all use the same color code, text style and size, and generally have the same \glqq look and feel\grqq.
+
+A minimal checklist regarding the preparation of good scientific figures can be found in the \emph{Scientific Writing Checklist} that comes with this document.
+A very brief introduction to clean and clear figure design can be found in, e.g., \url{https://youtu.be/UuL6wPGTJZQ}.
+For more details on how to create good scientific figures, refer to, e.g., \textcite{Tufte1990, Ware2008, Few2012, Rougier2014}.
 In the following, the rather technical aspect of how to generate and include figures in Latex will be considered, and several options will be discussed.
 
+\subsection{Including figures in a Latex document}
 \Cref{fig:sfap-schematic} shows a schematic of the geometry of of \gls{sfap} detection.
 Note the extensive figure caption: many readers will first skim through your thesis and look at the figures, which should hence be as self-explanatory as possible.
 \begin{figure}
@@ -116,7 +151,7 @@ Another package that is also based on the \swname{tikz} package is the \pgfplots
 		\end{tikzpicture}
 		\caption{}
 	\end{subfigure}
-	\caption{The same data points, (a) plotted using \matlab{} and exported to an \texttt{.eps} figure file, and (b) exported to a \texttt{.csv} file from \matlab{} and plotted using \pgfplots{}.
+	\caption[This is the short caption for the Matlab figure that appears in the list of figures]{The same data points, (a) plotted using \matlab{} and exported to an \texttt{.eps} figure file, and (b) exported to a \texttt{.csv} file from \matlab{} and plotted using \pgfplots{}.
 	Note how the font type and size of all labels in figure (b) agree nicely with those in the rest of the document.}
 	\label{fig:matlab}
 \end{figure}
@@ -143,13 +178,14 @@ For more information, refer to the accompanying script file \texttt{scripts/emg-
 \begin{figure}[htbp]
 	\centering
 	\includegraphics{figures/generated/emg-signals}
-	\caption{Exemplary subset of the measurements taken from subject 7, raw (plotted with a scaling factor of $\frac{1}{10}$) and processed by the various ECG removal algorithms described in the text. All signals are zero-mean, with offsets added for illustrational purposes only.
+	\caption[This is the short caption for the EMG figure that appears in the list of figures]{Exemplary subset of the measurements taken from subject 7, raw (plotted with a scaling factor of $\frac{1}{10}$) and processed by the various ECG removal algorithms described in the text. All signals are zero-mean, with offsets added for illustrational purposes only.
 	Due to the huge amount of data points, representing this figure in a vector graphics format (using, e.g., \pgfplots) would be very inefficient. 
 	Here, the figure has been produced using the \gnuplot{} software in a raster graphics format, while still achieving nice and consistent visual formatting.}
 	\label{fig:gnuplot-emg}
 \end{figure}
 
 \section{Referencing}
+\label{sec:citation}
 Every statement that you make in your thesis should either be supported by evidence (theoretical or empirical) provided in your thesis, or by citation of an appropriate literature reference.
 In the present chapter (materials and methods) in particular, you should provide a lot of references, e.g., to scientific articles~\cite{farina99}, books~\cite{plonsey07}, book chapters~\cite{rodriguez-falces12}, PhD theses~\cite{fevotte03}, or software projects~\cite{r-project} that you used during the creation of your thesis.
 You must provide a reference whenever you make a statement that is not a result of your own (experimental or theoretical) work, but rather taken from a literary source.
@@ -183,6 +219,7 @@ See the source code for how this is achieved.
 Note that the different appearance of chapters, sections, subsection and subsubsections can be customized if desired.
 
 \section{Equations}
+\label{sec:equations}
 If you are going to write more than a few equations in your thesis, it is highly recommendable to use macros to define each variable that occurs.
 This way, if you decide to rename the velocity from $v$ to $v_0$ (see the source code of this section for how to include mathematical symbols like $v$ in normal text) everywhere in your thesis later on during the process of writing, you will only have to change the definition of the macro used for this variable.
 For example, in
@@ -197,11 +234,12 @@ and
   &= \frac{\force}{\mass},
 \end{align}
 each of the variables is defined using a macro.
-Always keep in mind that formulas should be treated as a normal part of a sentence and thus can and have to contain punctuation marks!
+Always keep in mind that formulae should be treated as a normal part of a sentence and thus can and have to contain punctuation marks!
 \emph{Never} should any sentence start with a mathematical symbol.
 Finally, here comes an example of how to reference equations \eqref{eq:1} to \eqref{eq:2}.
+These references will update automatically if you decide to move these equations to a different part of the thesis, or if another equation is inserted between these two, hence changing equation numbering.
 
-\section{Pseudo Code}
+\section{Pseudo code}
 Algorithm \ref{alg:euclid} is an example of how pseudo code can be represented in Latex.
 Of course there are, as with anything in Latex, many options available to achieve this goal.
 Here, the \swname{algpseudocode} package is employed.
